@@ -29,7 +29,7 @@ void setup()
   WiFiManager wifiManager;
   //Reset setting
   //wifiManager.resetSettings();
-  wifiManager.setAPStaticIPConfig(IPAddress(10, 0, 0, 1), IPAddress(10, 0, 0, 1), IPAddress(255, 255, 255, 0));
+  wifiManager.setAPStaticIPConfig(IPAddress(IPLOWA, IPLOWB, IPLOWC, IPLOWD), IPAddress(IPHIGHA, IPHIGHB, IPHIGHC, IPHIGHD), IPAddress(255, 255, 255, 0));
 #ifdef WIFIDEBUG
   wifiManager.setDebugOutput(true);
 #else
@@ -41,13 +41,12 @@ void setup()
 #ifdef DEBUG
     Serial.println("Failed to connect");
 #endif
-    delay(1000);
+    delay(ATTENPTING);
     ESP.reset();
     delay(5000);
   }
-  
   //Define Alexa device name
-  espalexa.addDevice(DEVICE_NAME, stateChanged); 
+  espalexa.addDevice(DEVICE_NAME, stateChanged);
   espalexa.begin();
 
   //ESP8266 Configuration
