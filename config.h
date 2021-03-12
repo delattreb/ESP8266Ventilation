@@ -18,3 +18,6 @@
 #define EEPROM_SIZE 1
 #define EEPROM_PLACE_BRIGHT 0
 #pragma endregion 
+
+//URL
+//http://IP/espalexa
