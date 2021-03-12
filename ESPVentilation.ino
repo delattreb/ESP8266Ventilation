@@ -7,7 +7,7 @@
 WiFiClient wifiClient;
 Espalexa espalexa;
 
-void firstLightChanged(uint8_t brightness);
+void stateChanged(uint8_t value);
 
 //Setup
 void setup()
@@ -45,13 +45,14 @@ void setup()
     ESP.reset();
     delay(5000);
   }
+  
   //Define Alexa device name
-  espalexa.addDevice(DEVICE_NAME, firstLightChanged); //simplest definition, default state off
+  espalexa.addDevice(DEVICE_NAME, stateChanged); 
   espalexa.begin();
 
-  //Setup outup
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  //ESP8266 Configuration
+  pinMode(GPIO_0, OUTPUT);
+  digitalWrite(GPIO_0, HIGH);
 }
 
 //Loop
@@ -62,14 +63,16 @@ void loop()
 }
 
 //our callback functions
-void firstLightChanged(uint8_t brightness)
+void stateChanged(uint8_t value)
 {
-  if (brightness > 0)
-    digitalWrite(LED_BUILTIN, LOW);
+  if (value > 0)
+    digitalWrite(GPIO_0, LOW);
 
-  if (brightness == 0)
-    digitalWrite(LED_BUILTIN, HIGH);
+  if (value == 0)
+    digitalWrite(GPIO_0, HIGH);
 
-  Serial.print("Brightness: ");
-  Serial.println(brightness);
+#ifdef DEBUG
+  Serial.print("value: ");
+  Serial.println(value);
+#endif
 }

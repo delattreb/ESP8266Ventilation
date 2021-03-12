@@ -1,8 +1,8 @@
 //DEBUG INFORMATION
 #define SERIALLOG
-#define INFO
+//#define INFO
 #define DEBUG
-#define WIFIDEBUG
+//#define WIFIDEBUG
 
 // Serial configuration
 #define SERIALBAUDS 115200
@@ -12,6 +12,9 @@
 //ESP8266 configuration
 #define NETWORKNAME "ESPVentilation"
 #define ATTENPTING 1000
+// GPIO
+#define GPIO_0 0
+#define GPIO_1 2
 
 //Save Data
 #pragma region SAVE_DATA
